@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="check_context.xml"/>
+
+    <bean id="OneBedFull" class="impls.chambers.OneBedChamber" scope="prototype"  lazy-init="true" depends-on="CheckBean"/>
+
+    <bean id="TwoBedFull" class="impls.chambers.OneBedChamber" scope="prototype">
+        <constructor-arg value="5"    index="0" type="int"/>
+        <constructor-arg value="2"    index="1" type="int"/>
+        <constructor-arg value="true" index="2" type="java.lang.Boolean"/>
+        <constructor-arg value="true" index="3" type="java.lang.Boolean"/>
+        <constructor-arg value="true" index="4" type="java.lang.Boolean"/>
+        <constructor-arg value="true" index="5" type="java.lang.Boolean"/>
+
+    </bean>
+
+
+
+<bean id="OneBedOnly" class="impls.chambers.OneBedChamber" scope="prototype" lazy-init="false">
+    <property name="beds" value="1"/>
+    <property name="miniBar" value="false"/>
+    <property name="frig" value="false"/>
+    <property name="airConditioner" value="false"/>
+    <property name="jacuzzi" value="false"/>
+
+</bean>
+
+
+
+
+
+<bean id="OneBedWithoutJacuzzi" class="impls.chambers.OneBedChamber" autowire-candidate="true" scope="prototype">
+    <property name="jacuzzi" value="false"/>
+</bean>
+
+<bean id="Lux" class="impls.chambers.Lux" scope="singleton"/>
+
+
+<bean id="President" class="impls.chambers.President" scope="singleton"/>
+
+<bean id="BaseChamber" class="impls.chambers.BaseChamber" abstract="true">
+    <property name="beds"  value="0"/>
+    <property name="miniBar" value="false"/>
+    <property name="frig" value="false"/>
+    <property name="airConditioner" value="false"/>
+    <property name="jacuzzi" value="false"/>
+</bean>
+
+
+    <bean id="TwoBedsOnly" class="impls.chambers.OneBedChamber" parent="BaseChamber">
+        <property name="beds" value="2"/>
+    </bean>
+
+
+
+</beans>

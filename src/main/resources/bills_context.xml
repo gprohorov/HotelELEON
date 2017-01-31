@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="chambers_context.xml"/>
+    <import resource="kitchen_context.xml"/>
+    <import resource="spa_context.xml"/>
+    <import resource="check_context.xml"/>
+    <import resource="autowired_candidates.xml"/>
+
+    <bean id="Lux" class="impls.bills.LuxuryBill"/>
+    <bean id="OneBed" class="impls.bills.OneBedBill" scope="prototype"/>
+<!--
+
+    <bean id="OneBed" class="impls.bills.OneBedBill" scope="prototype">
+        <constructor-arg ref="OneBedFull" index="0"/>
+        <constructor-arg ref="Breakfast" index="1"/>
+        <constructor-arg ref="EmptyBill" index="2"/>
+    </bean>
+
+-->
+
+
+</beans>

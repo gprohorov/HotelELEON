@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="chambers_context.xml"/>
+    <import resource="kitchen_context.xml"/>
+    <import resource="spa_context.xml"/>
+
+    <bean id="AutoWiredChamber" class="impls.chambers.OneBedChamber"></bean>
+
+    <bean id="AutoWiredKitchen" class="impls.kitchen.FullPansion"/>
+    <bean id="AutoWiredSPA" class="impls.spa.EmptyBill"/>
+</beans>

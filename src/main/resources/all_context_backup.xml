@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-lazy-init="true"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:annotation-config/>
+
+    <import resource="bills_context.xml"/>
+
+
+    <bean id="Pool" class="impls.bills_list.BillsList">
+        <property name="billsList">
+            <list>
+                <ref bean="OneBed"/>
+                <ref bean="Lux"/>
+                <bean class="impls.bills.OneBedBill" >
+                    <constructor-arg ref="OneBedFull"/>
+                    <constructor-arg ref="Breakfast"/>
+                    <constructor-arg ref="Abonement"/>
+                </bean>
+
+            </list>
+        </property>
+    </bean>
+
+    <bean id="BillConveyor" class="impls.conveyor.BillConveyor" scope="singleton">
+    <lookup-method name="createBill" bean="OneBed"/>
+    </bean>
+
+
+</beans>
